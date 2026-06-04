@@ -5,8 +5,8 @@
     <PackageTags>sdk;api;http;library</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 Bila</Copyright>
-    <PackageProjectUrl>https://www.github.com/stainless-sdks/bila-csharp</PackageProjectUrl>
-    <RepositoryUrl>https://www.github.com/stainless-sdks/bila-csharp</RepositoryUrl>
+    <PackageProjectUrl>https://www.github.com/bilasdk/csharp</PackageProjectUrl>
+    <RepositoryUrl>https://www.github.com/bilasdk/csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
     <!-- Documentation-->
