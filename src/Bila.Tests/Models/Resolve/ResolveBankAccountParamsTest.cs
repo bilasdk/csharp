@@ -95,7 +95,6 @@ public class CountryTest : TestBase
 {
     [Theory]
     [InlineData(Country.Zm)]
-    [InlineData(Country.Ng)]
     public void Validation_Works(Country rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -117,7 +116,6 @@ public class CountryTest : TestBase
 
     [Theory]
     [InlineData(Country.Zm)]
-    [InlineData(Country.Ng)]
     public void SerializationRoundtrip_Works(Country rawValue)
     {
         // force implicit conversion because Theory can't do that for us

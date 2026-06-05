@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Bila.Core;
 using Bila.Exceptions;
+using Bila.Models;
 using Bila.Models.Webhooks;
 
 namespace Bila.Tests.Models.Webhooks;
@@ -18,7 +19,7 @@ public class WebhookGetDeliveriesResponseTest : TestBase
             Status = true,
             Data = new()
             {
-                Data =
+                DataValue =
                 [
                     new()
                     {
@@ -55,9 +56,9 @@ public class WebhookGetDeliveriesResponseTest : TestBase
 
         string expectedMessage = "Operation completed successfully";
         bool expectedStatus = true;
-        WebhookGetDeliveriesResponseIntersectionMember1Data expectedData = new()
+        Data expectedData = new()
         {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -105,7 +106,7 @@ public class WebhookGetDeliveriesResponseTest : TestBase
             Status = true,
             Data = new()
             {
-                Data =
+                DataValue =
                 [
                     new()
                     {
@@ -158,7 +159,7 @@ public class WebhookGetDeliveriesResponseTest : TestBase
             Status = true,
             Data = new()
             {
-                Data =
+                DataValue =
                 [
                     new()
                     {
@@ -202,9 +203,9 @@ public class WebhookGetDeliveriesResponseTest : TestBase
 
         string expectedMessage = "Operation completed successfully";
         bool expectedStatus = true;
-        WebhookGetDeliveriesResponseIntersectionMember1Data expectedData = new()
+        Data expectedData = new()
         {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -252,7 +253,7 @@ public class WebhookGetDeliveriesResponseTest : TestBase
             Status = true,
             Data = new()
             {
-                Data =
+                DataValue =
                 [
                     new()
                     {
@@ -355,7 +356,7 @@ public class WebhookGetDeliveriesResponseTest : TestBase
             Status = true,
             Data = new()
             {
-                Data =
+                DataValue =
                 [
                     new()
                     {
@@ -396,53 +397,14 @@ public class WebhookGetDeliveriesResponseTest : TestBase
     }
 }
 
-public class WebhookGetDeliveriesResponseIntersectionMember1Test : TestBase
+public class DataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
+        var model = new Data
         {
-            Data = new()
-            {
-                Data =
-                [
-                    new()
-                    {
-                        ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                        Attempts = 1,
-                        CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                        DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                        EventType = "payment.completed",
-                        FailedAt = null,
-                        MaxAttempts = 5,
-                        NextRetryAt = null,
-                        Payload = new Dictionary<string, JsonElement>()
-                        {
-                            { "id", JsonSerializer.SerializeToElement("bar") },
-                            { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                            { "amount", JsonSerializer.SerializeToElement("bar") },
-                            { "status", JsonSerializer.SerializeToElement("bar") },
-                        },
-                        ResponseBody = "{\"received\":true}",
-                        ResponseStatus = 200,
-                        Status = Status.Delivered,
-                        WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                    },
-                ],
-                Meta = new()
-                {
-                    CurrentPage = 1,
-                    PageCount = 3,
-                    PerPage = 50,
-                    Total = 150,
-                },
-            },
-        };
-
-        WebhookGetDeliveriesResponseIntersectionMember1Data expectedData = new()
-        {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -476,327 +438,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1Test : TestBase
             },
         };
 
-        Assert.Equal(expectedData, model.Data);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
-        {
-            Data = new()
-            {
-                Data =
-                [
-                    new()
-                    {
-                        ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                        Attempts = 1,
-                        CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                        DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                        EventType = "payment.completed",
-                        FailedAt = null,
-                        MaxAttempts = 5,
-                        NextRetryAt = null,
-                        Payload = new Dictionary<string, JsonElement>()
-                        {
-                            { "id", JsonSerializer.SerializeToElement("bar") },
-                            { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                            { "amount", JsonSerializer.SerializeToElement("bar") },
-                            { "status", JsonSerializer.SerializeToElement("bar") },
-                        },
-                        ResponseBody = "{\"received\":true}",
-                        ResponseStatus = 200,
-                        Status = Status.Delivered,
-                        WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                    },
-                ],
-                Meta = new()
-                {
-                    CurrentPage = 1,
-                    PageCount = 3,
-                    PerPage = 50,
-                    Total = 150,
-                },
-            },
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<WebhookGetDeliveriesResponseIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
-        {
-            Data = new()
-            {
-                Data =
-                [
-                    new()
-                    {
-                        ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                        Attempts = 1,
-                        CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                        DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                        EventType = "payment.completed",
-                        FailedAt = null,
-                        MaxAttempts = 5,
-                        NextRetryAt = null,
-                        Payload = new Dictionary<string, JsonElement>()
-                        {
-                            { "id", JsonSerializer.SerializeToElement("bar") },
-                            { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                            { "amount", JsonSerializer.SerializeToElement("bar") },
-                            { "status", JsonSerializer.SerializeToElement("bar") },
-                        },
-                        ResponseBody = "{\"received\":true}",
-                        ResponseStatus = 200,
-                        Status = Status.Delivered,
-                        WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                    },
-                ],
-                Meta = new()
-                {
-                    CurrentPage = 1,
-                    PageCount = 3,
-                    PerPage = 50,
-                    Total = 150,
-                },
-            },
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<WebhookGetDeliveriesResponseIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
-        Assert.NotNull(deserialized);
-
-        WebhookGetDeliveriesResponseIntersectionMember1Data expectedData = new()
-        {
-            Data =
-            [
-                new()
-                {
-                    ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                    Attempts = 1,
-                    CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                    DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                    EventType = "payment.completed",
-                    FailedAt = null,
-                    MaxAttempts = 5,
-                    NextRetryAt = null,
-                    Payload = new Dictionary<string, JsonElement>()
-                    {
-                        { "id", JsonSerializer.SerializeToElement("bar") },
-                        { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                        { "amount", JsonSerializer.SerializeToElement("bar") },
-                        { "status", JsonSerializer.SerializeToElement("bar") },
-                    },
-                    ResponseBody = "{\"received\":true}",
-                    ResponseStatus = 200,
-                    Status = Status.Delivered,
-                    WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                },
-            ],
-            Meta = new()
-            {
-                CurrentPage = 1,
-                PageCount = 3,
-                PerPage = 50,
-                Total = 150,
-            },
-        };
-
-        Assert.Equal(expectedData, deserialized.Data);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
-        {
-            Data = new()
-            {
-                Data =
-                [
-                    new()
-                    {
-                        ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                        Attempts = 1,
-                        CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                        DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                        EventType = "payment.completed",
-                        FailedAt = null,
-                        MaxAttempts = 5,
-                        NextRetryAt = null,
-                        Payload = new Dictionary<string, JsonElement>()
-                        {
-                            { "id", JsonSerializer.SerializeToElement("bar") },
-                            { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                            { "amount", JsonSerializer.SerializeToElement("bar") },
-                            { "status", JsonSerializer.SerializeToElement("bar") },
-                        },
-                        ResponseBody = "{\"received\":true}",
-                        ResponseStatus = 200,
-                        Status = Status.Delivered,
-                        WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                    },
-                ],
-                Meta = new()
-                {
-                    CurrentPage = 1,
-                    PageCount = 3,
-                    PerPage = 50,
-                    Total = 150,
-                },
-            },
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1 { };
-
-        Assert.Null(model.Data);
-        Assert.False(model.RawData.ContainsKey("data"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1 { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
-        {
-            // Null should be interpreted as omitted for these properties
-            Data = null,
-        };
-
-        Assert.Null(model.Data);
-        Assert.False(model.RawData.ContainsKey("data"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
-        {
-            // Null should be interpreted as omitted for these properties
-            Data = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1
-        {
-            Data = new()
-            {
-                Data =
-                [
-                    new()
-                    {
-                        ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                        Attempts = 1,
-                        CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                        DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                        EventType = "payment.completed",
-                        FailedAt = null,
-                        MaxAttempts = 5,
-                        NextRetryAt = null,
-                        Payload = new Dictionary<string, JsonElement>()
-                        {
-                            { "id", JsonSerializer.SerializeToElement("bar") },
-                            { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                            { "amount", JsonSerializer.SerializeToElement("bar") },
-                            { "status", JsonSerializer.SerializeToElement("bar") },
-                        },
-                        ResponseBody = "{\"received\":true}",
-                        ResponseStatus = 200,
-                        Status = Status.Delivered,
-                        WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                    },
-                ],
-                Meta = new()
-                {
-                    CurrentPage = 1,
-                    PageCount = 3,
-                    PerPage = 50,
-                    Total = 150,
-                },
-            },
-        };
-
-        WebhookGetDeliveriesResponseIntersectionMember1 copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1Data
-        {
-            Data =
-            [
-                new()
-                {
-                    ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
-                    Attempts = 1,
-                    CreatedAt = DateTimeOffset.Parse("2026-04-15T14:30:00.000Z"),
-                    DeliveredAt = DateTimeOffset.Parse("2026-04-15T14:30:05.000Z"),
-                    EventType = "payment.completed",
-                    FailedAt = null,
-                    MaxAttempts = 5,
-                    NextRetryAt = null,
-                    Payload = new Dictionary<string, JsonElement>()
-                    {
-                        { "id", JsonSerializer.SerializeToElement("bar") },
-                        { "transactionId", JsonSerializer.SerializeToElement("bar") },
-                        { "amount", JsonSerializer.SerializeToElement("bar") },
-                        { "status", JsonSerializer.SerializeToElement("bar") },
-                    },
-                    ResponseBody = "{\"received\":true}",
-                    ResponseStatus = 200,
-                    Status = Status.Delivered,
-                    WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-                },
-            ],
-            Meta = new()
-            {
-                CurrentPage = 1,
-                PageCount = 3,
-                PerPage = 50,
-                Total = 150,
-            },
-        };
-
-        List<WebhookGetDeliveriesResponseIntersectionMember1DataData> expectedData =
+        List<DataData> expectedDataValue =
         [
             new()
             {
@@ -821,7 +463,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
                 WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
             },
         ];
-        Meta expectedMeta = new()
+        PaginationMetaDto expectedMeta = new()
         {
             CurrentPage = 1,
             PageCount = 3,
@@ -829,10 +471,10 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
             Total = 150,
         };
 
-        Assert.Equal(expectedData.Count, model.Data.Count);
-        for (int i = 0; i < expectedData.Count; i++)
+        Assert.Equal(expectedDataValue.Count, model.DataValue.Count);
+        for (int i = 0; i < expectedDataValue.Count; i++)
         {
-            Assert.Equal(expectedData[i], model.Data[i]);
+            Assert.Equal(expectedDataValue[i], model.DataValue[i]);
         }
         Assert.Equal(expectedMeta, model.Meta);
     }
@@ -840,9 +482,9 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1Data
+        var model = new Data
         {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -877,11 +519,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<WebhookGetDeliveriesResponseIntersectionMember1Data>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<Data>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -889,9 +527,9 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1Data
+        var model = new Data
         {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -926,14 +564,10 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<WebhookGetDeliveriesResponseIntersectionMember1Data>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<Data>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
-        List<WebhookGetDeliveriesResponseIntersectionMember1DataData> expectedData =
+        List<DataData> expectedDataValue =
         [
             new()
             {
@@ -958,7 +592,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
                 WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
             },
         ];
-        Meta expectedMeta = new()
+        PaginationMetaDto expectedMeta = new()
         {
             CurrentPage = 1,
             PageCount = 3,
@@ -966,10 +600,10 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
             Total = 150,
         };
 
-        Assert.Equal(expectedData.Count, deserialized.Data.Count);
-        for (int i = 0; i < expectedData.Count; i++)
+        Assert.Equal(expectedDataValue.Count, deserialized.DataValue.Count);
+        for (int i = 0; i < expectedDataValue.Count; i++)
         {
-            Assert.Equal(expectedData[i], deserialized.Data[i]);
+            Assert.Equal(expectedDataValue[i], deserialized.DataValue[i]);
         }
         Assert.Equal(expectedMeta, deserialized.Meta);
     }
@@ -977,9 +611,9 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1Data
+        var model = new Data
         {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -1019,9 +653,9 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1Data
+        var model = new Data
         {
-            Data =
+            DataValue =
             [
                 new()
                 {
@@ -1055,18 +689,18 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataTest : TestBase
             },
         };
 
-        WebhookGetDeliveriesResponseIntersectionMember1Data copied = new(model);
+        Data copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestBase
+public class DataDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1DataData
+        var model = new DataData
         {
             ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
             Attempts = 1,
@@ -1131,7 +765,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1DataData
+        var model = new DataData
         {
             ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
             Attempts = 1,
@@ -1155,11 +789,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<WebhookGetDeliveriesResponseIntersectionMember1DataData>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<DataData>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -1167,7 +797,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1DataData
+        var model = new DataData
         {
             ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
             Attempts = 1,
@@ -1191,11 +821,10 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<WebhookGetDeliveriesResponseIntersectionMember1DataData>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<DataData>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedID = "68f11209-451f-4a15-bfcd-d916eb8b09f6";
@@ -1240,7 +869,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
     [Fact]
     public void Validation_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1DataData
+        var model = new DataData
         {
             ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
             Attempts = 1,
@@ -1269,7 +898,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new WebhookGetDeliveriesResponseIntersectionMember1DataData
+        var model = new DataData
         {
             ID = "68f11209-451f-4a15-bfcd-d916eb8b09f6",
             Attempts = 1,
@@ -1292,7 +921,7 @@ public class WebhookGetDeliveriesResponseIntersectionMember1DataDataTest : TestB
             WebhookConfigID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
         };
 
-        WebhookGetDeliveriesResponseIntersectionMember1DataData copied = new(model);
+        DataData copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -1357,103 +986,5 @@ public class StatusTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
-    }
-}
-
-public class MetaTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Meta
-        {
-            CurrentPage = 1,
-            PageCount = 3,
-            PerPage = 50,
-            Total = 150,
-        };
-
-        double expectedCurrentPage = 1;
-        double expectedPageCount = 3;
-        double expectedPerPage = 50;
-        double expectedTotal = 150;
-
-        Assert.Equal(expectedCurrentPage, model.CurrentPage);
-        Assert.Equal(expectedPageCount, model.PageCount);
-        Assert.Equal(expectedPerPage, model.PerPage);
-        Assert.Equal(expectedTotal, model.Total);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Meta
-        {
-            CurrentPage = 1,
-            PageCount = 3,
-            PerPage = 50,
-            Total = 150,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Meta>(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Meta
-        {
-            CurrentPage = 1,
-            PageCount = 3,
-            PerPage = 50,
-            Total = 150,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Meta>(element, ModelBase.SerializerOptions);
-        Assert.NotNull(deserialized);
-
-        double expectedCurrentPage = 1;
-        double expectedPageCount = 3;
-        double expectedPerPage = 50;
-        double expectedTotal = 150;
-
-        Assert.Equal(expectedCurrentPage, deserialized.CurrentPage);
-        Assert.Equal(expectedPageCount, deserialized.PageCount);
-        Assert.Equal(expectedPerPage, deserialized.PerPage);
-        Assert.Equal(expectedTotal, deserialized.Total);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Meta
-        {
-            CurrentPage = 1,
-            PageCount = 3,
-            PerPage = 50,
-            Total = 150,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Meta
-        {
-            CurrentPage = 1,
-            PageCount = 3,
-            PerPage = 50,
-            Total = 150,
-        };
-
-        Meta copied = new(model);
-
-        Assert.Equal(model, copied);
     }
 }

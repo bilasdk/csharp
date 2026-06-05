@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Bila.Core;
-using Bila.Models.Accounts;
 
 namespace Bila.Models.Banks;
 
@@ -38,14 +37,12 @@ public sealed record class BankListResponse : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
-    public IReadOnlyList<global::Bila.Models.Banks.Data>? Data
+    public IReadOnlyList<Data>? Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<global::Bila.Models.Banks.Data>>(
-                "data"
-            );
+            return this._rawData.GetNullableStruct<ImmutableArray<Data>>("data");
         }
         init
         {
@@ -54,15 +51,12 @@ public sealed record class BankListResponse : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<global::Bila.Models.Banks.Data>?>(
+            this._rawData.Set<ImmutableArray<Data>?>(
                 "data",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
         }
     }
-
-    public static implicit operator BilaResponse(BankListResponse bankListResponse) =>
-        new() { Message = bankListResponse.Message, Status = bankListResponse.Status };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -112,90 +106,7 @@ class BankListResponseFromRaw : IFromRawJson<BankListResponse>
         BankListResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Bila.Models.Banks.IntersectionMember1,
-        global::Bila.Models.Banks.IntersectionMember1FromRaw
-    >)
-)]
-public sealed record class IntersectionMember1 : JsonModel
-{
-    public IReadOnlyList<global::Bila.Models.Banks.Data>? Data
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<global::Bila.Models.Banks.Data>>(
-                "data"
-            );
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set<ImmutableArray<global::Bila.Models.Banks.Data>?>(
-                "data",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        foreach (var item in this.Data ?? [])
-        {
-            item.Validate();
-        }
-    }
-
-    public IntersectionMember1() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public IntersectionMember1(global::Bila.Models.Banks.IntersectionMember1 intersectionMember1)
-        : base(intersectionMember1) { }
-#pragma warning restore CS8618
-
-    public IntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    IntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="global::Bila.Models.Banks.IntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static global::Bila.Models.Banks.IntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class IntersectionMember1FromRaw : IFromRawJson<global::Bila.Models.Banks.IntersectionMember1>
-{
-    /// <inheritdoc/>
-    public global::Bila.Models.Banks.IntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Bila.Models.Banks.IntersectionMember1.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Bila.Models.Banks.Data,
-        global::Bila.Models.Banks.DataFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
 public sealed record class Data : JsonModel
 {
     /// <summary>
@@ -285,7 +196,7 @@ public sealed record class Data : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Data(global::Bila.Models.Banks.Data data)
+    public Data(Data data)
         : base(data) { }
 #pragma warning restore CS8618
 
@@ -302,19 +213,16 @@ public sealed record class Data : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Bila.Models.Banks.DataFromRaw.FromRawUnchecked"/>
-    public static global::Bila.Models.Banks.Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class DataFromRaw : IFromRawJson<global::Bila.Models.Banks.Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
-    public global::Bila.Models.Banks.Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Bila.Models.Banks.Data.FromRawUnchecked(rawData);
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
 }

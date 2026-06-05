@@ -1,15 +1,15 @@
 using System.Text.Json;
 using Bila.Core;
-using Bila.Models.Accounts;
+using Bila.Models.Webhooks;
 
-namespace Bila.Tests.Models.Accounts;
+namespace Bila.Tests.Models.Webhooks;
 
-public class BilaResponseTest : TestBase
+public class WebhookDeactivateResponseTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BilaResponse
+        var model = new WebhookDeactivateResponse
         {
             Message = "Operation completed successfully",
             Status = true,
@@ -25,14 +25,14 @@ public class BilaResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BilaResponse
+        var model = new WebhookDeactivateResponse
         {
             Message = "Operation completed successfully",
             Status = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BilaResponse>(
+        var deserialized = JsonSerializer.Deserialize<WebhookDeactivateResponse>(
             json,
             ModelBase.SerializerOptions
         );
@@ -43,14 +43,14 @@ public class BilaResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BilaResponse
+        var model = new WebhookDeactivateResponse
         {
             Message = "Operation completed successfully",
             Status = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<BilaResponse>(
+        var deserialized = JsonSerializer.Deserialize<WebhookDeactivateResponse>(
             element,
             ModelBase.SerializerOptions
         );
@@ -66,7 +66,7 @@ public class BilaResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new BilaResponse
+        var model = new WebhookDeactivateResponse
         {
             Message = "Operation completed successfully",
             Status = true,
@@ -78,13 +78,13 @@ public class BilaResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new BilaResponse
+        var model = new WebhookDeactivateResponse
         {
             Message = "Operation completed successfully",
             Status = true,
         };
 
-        BilaResponse copied = new(model);
+        WebhookDeactivateResponse copied = new(model);
 
         Assert.Equal(model, copied);
     }
