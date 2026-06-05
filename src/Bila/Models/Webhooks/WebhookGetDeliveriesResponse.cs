@@ -7,7 +7,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Bila.Core;
 using Bila.Exceptions;
-using Accounts = Bila.Models.Accounts;
 
 namespace Bila.Models.Webhooks;
 
@@ -42,14 +41,12 @@ public sealed record class WebhookGetDeliveriesResponse : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
-    public WebhookGetDeliveriesResponseIntersectionMember1Data? Data
+    public Data? Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<WebhookGetDeliveriesResponseIntersectionMember1Data>(
-                "data"
-            );
+            return this._rawData.GetNullableClass<Data>("data");
         }
         init
         {
@@ -61,15 +58,6 @@ public sealed record class WebhookGetDeliveriesResponse : JsonModel
             this._rawData.Set("data", value);
         }
     }
-
-    public static implicit operator Accounts::BilaResponse(
-        WebhookGetDeliveriesResponse webhookGetDeliveriesResponse
-    ) =>
-        new()
-        {
-            Message = webhookGetDeliveriesResponse.Message,
-            Status = webhookGetDeliveriesResponse.Status,
-        };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -117,120 +105,37 @@ class WebhookGetDeliveriesResponseFromRaw : IFromRawJson<WebhookGetDeliveriesRes
     ) => WebhookGetDeliveriesResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        WebhookGetDeliveriesResponseIntersectionMember1,
-        WebhookGetDeliveriesResponseIntersectionMember1FromRaw
-    >)
-)]
-public sealed record class WebhookGetDeliveriesResponseIntersectionMember1 : JsonModel
-{
-    public WebhookGetDeliveriesResponseIntersectionMember1Data? Data
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<WebhookGetDeliveriesResponseIntersectionMember1Data>(
-                "data"
-            );
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("data", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        this.Data?.Validate();
-    }
-
-    public WebhookGetDeliveriesResponseIntersectionMember1() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public WebhookGetDeliveriesResponseIntersectionMember1(
-        WebhookGetDeliveriesResponseIntersectionMember1 webhookGetDeliveriesResponseIntersectionMember1
-    )
-        : base(webhookGetDeliveriesResponseIntersectionMember1) { }
-#pragma warning restore CS8618
-
-    public WebhookGetDeliveriesResponseIntersectionMember1(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    WebhookGetDeliveriesResponseIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="WebhookGetDeliveriesResponseIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static WebhookGetDeliveriesResponseIntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class WebhookGetDeliveriesResponseIntersectionMember1FromRaw
-    : IFromRawJson<WebhookGetDeliveriesResponseIntersectionMember1>
-{
-    /// <inheritdoc/>
-    public WebhookGetDeliveriesResponseIntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => WebhookGetDeliveriesResponseIntersectionMember1.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(
-    typeof(JsonModelConverter<
-        WebhookGetDeliveriesResponseIntersectionMember1Data,
-        WebhookGetDeliveriesResponseIntersectionMember1DataFromRaw
-    >)
-)]
-public sealed record class WebhookGetDeliveriesResponseIntersectionMember1Data : JsonModel
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : JsonModel
 {
     /// <summary>
     /// List of webhook deliveries
     /// </summary>
-    public required IReadOnlyList<WebhookGetDeliveriesResponseIntersectionMember1DataData> Data
+    public required IReadOnlyList<DataData> DataValue
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<WebhookGetDeliveriesResponseIntersectionMember1DataData>
-            >("data");
+            return this._rawData.GetNotNullStruct<ImmutableArray<DataData>>("data");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<WebhookGetDeliveriesResponseIntersectionMember1DataData>
-            >("data", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<DataData>>(
+                "data",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
     /// <summary>
     /// Pagination metadata
     /// </summary>
-    public required Meta Meta
+    public required PaginationMetaDto Meta
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Meta>("meta");
+            return this._rawData.GetNotNullClass<PaginationMetaDto>("meta");
         }
         init { this._rawData.Set("meta", value); }
     }
@@ -238,65 +143,50 @@ public sealed record class WebhookGetDeliveriesResponseIntersectionMember1Data :
     /// <inheritdoc/>
     public override void Validate()
     {
-        foreach (var item in this.Data)
+        foreach (var item in this.DataValue)
         {
             item.Validate();
         }
         this.Meta.Validate();
     }
 
-    public WebhookGetDeliveriesResponseIntersectionMember1Data() { }
+    public Data() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public WebhookGetDeliveriesResponseIntersectionMember1Data(
-        WebhookGetDeliveriesResponseIntersectionMember1Data webhookGetDeliveriesResponseIntersectionMember1Data
-    )
-        : base(webhookGetDeliveriesResponseIntersectionMember1Data) { }
+    public Data(Data data)
+        : base(data) { }
 #pragma warning restore CS8618
 
-    public WebhookGetDeliveriesResponseIntersectionMember1Data(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WebhookGetDeliveriesResponseIntersectionMember1Data(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    Data(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="WebhookGetDeliveriesResponseIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static WebhookGetDeliveriesResponseIntersectionMember1Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class WebhookGetDeliveriesResponseIntersectionMember1DataFromRaw
-    : IFromRawJson<WebhookGetDeliveriesResponseIntersectionMember1Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
-    public WebhookGetDeliveriesResponseIntersectionMember1Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => WebhookGetDeliveriesResponseIntersectionMember1Data.FromRawUnchecked(rawData);
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        WebhookGetDeliveriesResponseIntersectionMember1DataData,
-        WebhookGetDeliveriesResponseIntersectionMember1DataDataFromRaw
-    >)
-)]
-public sealed record class WebhookGetDeliveriesResponseIntersectionMember1DataData : JsonModel
+[JsonConverter(typeof(JsonModelConverter<DataData, DataDataFromRaw>))]
+public sealed record class DataData : JsonModel
 {
     /// <summary>
     /// Delivery UUID
@@ -488,49 +378,39 @@ public sealed record class WebhookGetDeliveriesResponseIntersectionMember1DataDa
         _ = this.WebhookConfigID;
     }
 
-    public WebhookGetDeliveriesResponseIntersectionMember1DataData() { }
+    public DataData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public WebhookGetDeliveriesResponseIntersectionMember1DataData(
-        WebhookGetDeliveriesResponseIntersectionMember1DataData webhookGetDeliveriesResponseIntersectionMember1DataData
-    )
-        : base(webhookGetDeliveriesResponseIntersectionMember1DataData) { }
+    public DataData(DataData dataData)
+        : base(dataData) { }
 #pragma warning restore CS8618
 
-    public WebhookGetDeliveriesResponseIntersectionMember1DataData(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public DataData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WebhookGetDeliveriesResponseIntersectionMember1DataData(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    DataData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="WebhookGetDeliveriesResponseIntersectionMember1DataDataFromRaw.FromRawUnchecked"/>
-    public static WebhookGetDeliveriesResponseIntersectionMember1DataData FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DataDataFromRaw.FromRawUnchecked"/>
+    public static DataData FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class WebhookGetDeliveriesResponseIntersectionMember1DataDataFromRaw
-    : IFromRawJson<WebhookGetDeliveriesResponseIntersectionMember1DataData>
+class DataDataFromRaw : IFromRawJson<DataData>
 {
     /// <inheritdoc/>
-    public WebhookGetDeliveriesResponseIntersectionMember1DataData FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => WebhookGetDeliveriesResponseIntersectionMember1DataData.FromRawUnchecked(rawData);
+    public DataData FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        DataData.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -580,106 +460,4 @@ sealed class StatusConverter : JsonConverter<Status>
             options
         );
     }
-}
-
-/// <summary>
-/// Pagination metadata
-/// </summary>
-[JsonConverter(typeof(JsonModelConverter<Meta, MetaFromRaw>))]
-public sealed record class Meta : JsonModel
-{
-    /// <summary>
-    /// Current page number
-    /// </summary>
-    public required double CurrentPage
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("currentPage");
-        }
-        init { this._rawData.Set("currentPage", value); }
-    }
-
-    /// <summary>
-    /// Total number of pages
-    /// </summary>
-    public required double PageCount
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("pageCount");
-        }
-        init { this._rawData.Set("pageCount", value); }
-    }
-
-    /// <summary>
-    /// Items per page
-    /// </summary>
-    public required double PerPage
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("perPage");
-        }
-        init { this._rawData.Set("perPage", value); }
-    }
-
-    /// <summary>
-    /// Total number of records
-    /// </summary>
-    public required double Total
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<double>("total");
-        }
-        init { this._rawData.Set("total", value); }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        _ = this.CurrentPage;
-        _ = this.PageCount;
-        _ = this.PerPage;
-        _ = this.Total;
-    }
-
-    public Meta() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public Meta(Meta meta)
-        : base(meta) { }
-#pragma warning restore CS8618
-
-    public Meta(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    Meta(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="MetaFromRaw.FromRawUnchecked"/>
-    public static Meta FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class MetaFromRaw : IFromRawJson<Meta>
-{
-    /// <inheritdoc/>
-    public Meta FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Meta.FromRawUnchecked(rawData);
 }

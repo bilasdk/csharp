@@ -19,7 +19,7 @@ public class CollectionInitiateMobileMoneyCollectionParamsTest : TestBase
             Phone = "0977433571",
             Reference = "collection-001",
             WalletID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-            Bearer = Bearer.Customer,
+            Bearer = Bearer.Merchant,
             CustomerName = "John Doe",
             Narration = "Payment for subscription",
         };
@@ -30,7 +30,7 @@ public class CollectionInitiateMobileMoneyCollectionParamsTest : TestBase
         string expectedPhone = "0977433571";
         string expectedReference = "collection-001";
         string expectedWalletID = "68f11209-451f-4a15-bfcd-d916eb8b09f4";
-        ApiEnum<string, Bearer> expectedBearer = Bearer.Customer;
+        ApiEnum<string, Bearer> expectedBearer = Bearer.Merchant;
         string expectedCustomerName = "John Doe";
         string expectedNarration = "Payment for subscription";
 
@@ -126,7 +126,7 @@ public class CollectionInitiateMobileMoneyCollectionParamsTest : TestBase
             Phone = "0977433571",
             Reference = "collection-001",
             WalletID = "68f11209-451f-4a15-bfcd-d916eb8b09f4",
-            Bearer = Bearer.Customer,
+            Bearer = Bearer.Merchant,
             CustomerName = "John Doe",
             Narration = "Payment for subscription",
         };
@@ -141,7 +141,6 @@ public class CountryTest : TestBase
 {
     [Theory]
     [InlineData(Country.Zm)]
-    [InlineData(Country.Ng)]
     public void Validation_Works(Country rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -163,7 +162,6 @@ public class CountryTest : TestBase
 
     [Theory]
     [InlineData(Country.Zm)]
-    [InlineData(Country.Ng)]
     public void SerializationRoundtrip_Works(Country rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -201,7 +199,6 @@ public class OperatorTest : TestBase
     [InlineData(Operator.Airtel)]
     [InlineData(Operator.Mtn)]
     [InlineData(Operator.Zamtel)]
-    [InlineData(Operator.Vodacom)]
     public void Validation_Works(Operator rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -225,7 +222,6 @@ public class OperatorTest : TestBase
     [InlineData(Operator.Airtel)]
     [InlineData(Operator.Mtn)]
     [InlineData(Operator.Zamtel)]
-    [InlineData(Operator.Vodacom)]
     public void SerializationRoundtrip_Works(Operator rawValue)
     {
         // force implicit conversion because Theory can't do that for us

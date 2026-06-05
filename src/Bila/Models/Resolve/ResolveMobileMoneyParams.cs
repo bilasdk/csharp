@@ -186,7 +186,6 @@ public record class ResolveMobileMoneyParams : ParamsBase
 public enum ResolveMobileMoneyParamsCountry
 {
     Zm,
-    Ng,
 }
 
 sealed class ResolveMobileMoneyParamsCountryConverter
@@ -201,7 +200,6 @@ sealed class ResolveMobileMoneyParamsCountryConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "zm" => ResolveMobileMoneyParamsCountry.Zm,
-            "ng" => ResolveMobileMoneyParamsCountry.Ng,
             _ => (ResolveMobileMoneyParamsCountry)(-1),
         };
     }
@@ -217,7 +215,6 @@ sealed class ResolveMobileMoneyParamsCountryConverter
             value switch
             {
                 ResolveMobileMoneyParamsCountry.Zm => "zm",
-                ResolveMobileMoneyParamsCountry.Ng => "ng",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -236,7 +233,6 @@ public enum Operator
     Airtel,
     Mtn,
     Zamtel,
-    Vodacom,
 }
 
 sealed class OperatorConverter : JsonConverter<Operator>
@@ -252,7 +248,6 @@ sealed class OperatorConverter : JsonConverter<Operator>
             "airtel" => Operator.Airtel,
             "mtn" => Operator.Mtn,
             "zamtel" => Operator.Zamtel,
-            "vodacom" => Operator.Vodacom,
             _ => (Operator)(-1),
         };
     }
@@ -266,7 +261,6 @@ sealed class OperatorConverter : JsonConverter<Operator>
                 Operator.Airtel => "airtel",
                 Operator.Mtn => "mtn",
                 Operator.Zamtel => "zamtel",
-                Operator.Vodacom => "vodacom",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

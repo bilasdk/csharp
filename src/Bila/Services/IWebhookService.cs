@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Bila.Core;
-using Bila.Models.Accounts;
 using Bila.Models.Webhooks;
 
 namespace Bila.Services;
@@ -63,13 +62,13 @@ public interface IWebhookService
     /// <summary>
     /// Deactivate a webhook
     /// </summary>
-    Task<BilaResponse> Deactivate(
+    Task<WebhookDeactivateResponse> Deactivate(
         WebhookDeactivateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Deactivate(WebhookDeactivateParams, CancellationToken)"/>
-    Task<BilaResponse> Deactivate(
+    Task<WebhookDeactivateResponse> Deactivate(
         string id,
         WebhookDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -165,13 +164,13 @@ public interface IWebhookServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /api/v1/bila/webhooks/{id}</c>, but is otherwise the
     /// same as <see cref="IWebhookService.Deactivate(WebhookDeactivateParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<BilaResponse>> Deactivate(
+    Task<HttpResponse<WebhookDeactivateResponse>> Deactivate(
         WebhookDeactivateParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Deactivate(WebhookDeactivateParams, CancellationToken)"/>
-    Task<HttpResponse<BilaResponse>> Deactivate(
+    Task<HttpResponse<WebhookDeactivateResponse>> Deactivate(
         string id,
         WebhookDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default

@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bila.Core;
 using Bila.Exceptions;
-using Bila.Models.Accounts;
 using Bila.Models.Webhooks;
 
 namespace Bila.Services;
@@ -84,7 +83,7 @@ public sealed class WebhookService : IWebhookService
     }
 
     /// <inheritdoc/>
-    public async Task<BilaResponse> Deactivate(
+    public async Task<WebhookDeactivateResponse> Deactivate(
         WebhookDeactivateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -96,7 +95,7 @@ public sealed class WebhookService : IWebhookService
     }
 
     /// <inheritdoc/>
-    public Task<BilaResponse> Deactivate(
+    public Task<WebhookDeactivateResponse> Deactivate(
         string id,
         WebhookDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -288,7 +287,7 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<BilaResponse>> Deactivate(
+    public async Task<HttpResponse<WebhookDeactivateResponse>> Deactivate(
         WebhookDeactivateParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -308,20 +307,20 @@ public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawRespon
             response,
             async (token) =>
             {
-                var bilaResponse = await response
-                    .Deserialize<BilaResponse>(token)
+                var deserializedResponse = await response
+                    .Deserialize<WebhookDeactivateResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    bilaResponse.Validate();
+                    deserializedResponse.Validate();
                 }
-                return bilaResponse;
+                return deserializedResponse;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<BilaResponse>> Deactivate(
+    public Task<HttpResponse<WebhookDeactivateResponse>> Deactivate(
         string id,
         WebhookDeactivateParams? parameters = null,
         CancellationToken cancellationToken = default

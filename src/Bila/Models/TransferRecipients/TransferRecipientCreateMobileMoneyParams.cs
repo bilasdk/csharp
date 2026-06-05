@@ -210,7 +210,6 @@ public record class TransferRecipientCreateMobileMoneyParams : ParamsBase
 public enum TransferRecipientCreateMobileMoneyParamsCountry
 {
     Zm,
-    Ng,
 }
 
 sealed class TransferRecipientCreateMobileMoneyParamsCountryConverter
@@ -225,7 +224,6 @@ sealed class TransferRecipientCreateMobileMoneyParamsCountryConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "zm" => TransferRecipientCreateMobileMoneyParamsCountry.Zm,
-            "ng" => TransferRecipientCreateMobileMoneyParamsCountry.Ng,
             _ => (TransferRecipientCreateMobileMoneyParamsCountry)(-1),
         };
     }
@@ -241,7 +239,6 @@ sealed class TransferRecipientCreateMobileMoneyParamsCountryConverter
             value switch
             {
                 TransferRecipientCreateMobileMoneyParamsCountry.Zm => "zm",
-                TransferRecipientCreateMobileMoneyParamsCountry.Ng => "ng",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -260,7 +257,6 @@ public enum Operator
     Airtel,
     Mtn,
     Zamtel,
-    Vodacom,
 }
 
 sealed class OperatorConverter : JsonConverter<Operator>
@@ -276,7 +272,6 @@ sealed class OperatorConverter : JsonConverter<Operator>
             "airtel" => Operator.Airtel,
             "mtn" => Operator.Mtn,
             "zamtel" => Operator.Zamtel,
-            "vodacom" => Operator.Vodacom,
             _ => (Operator)(-1),
         };
     }
@@ -290,7 +285,6 @@ sealed class OperatorConverter : JsonConverter<Operator>
                 Operator.Airtel => "airtel",
                 Operator.Mtn => "mtn",
                 Operator.Zamtel => "zamtel",
-                Operator.Vodacom => "vodacom",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

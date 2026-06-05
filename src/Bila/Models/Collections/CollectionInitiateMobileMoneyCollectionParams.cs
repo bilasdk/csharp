@@ -289,7 +289,6 @@ public record class CollectionInitiateMobileMoneyCollectionParams : ParamsBase
 public enum Country
 {
     Zm,
-    Ng,
 }
 
 sealed class CountryConverter : JsonConverter<Country>
@@ -303,7 +302,6 @@ sealed class CountryConverter : JsonConverter<Country>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "zm" => Country.Zm,
-            "ng" => Country.Ng,
             _ => (Country)(-1),
         };
     }
@@ -315,7 +313,6 @@ sealed class CountryConverter : JsonConverter<Country>
             value switch
             {
                 Country.Zm => "zm",
-                Country.Ng => "ng",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -334,7 +331,6 @@ public enum Operator
     Airtel,
     Mtn,
     Zamtel,
-    Vodacom,
 }
 
 sealed class OperatorConverter : JsonConverter<Operator>
@@ -350,7 +346,6 @@ sealed class OperatorConverter : JsonConverter<Operator>
             "airtel" => Operator.Airtel,
             "mtn" => Operator.Mtn,
             "zamtel" => Operator.Zamtel,
-            "vodacom" => Operator.Vodacom,
             _ => (Operator)(-1),
         };
     }
@@ -364,7 +359,6 @@ sealed class OperatorConverter : JsonConverter<Operator>
                 Operator.Airtel => "airtel",
                 Operator.Mtn => "mtn",
                 Operator.Zamtel => "zamtel",
-                Operator.Vodacom => "vodacom",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

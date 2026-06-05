@@ -5,10 +5,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Bila.Core;
 
-namespace Bila.Models.Accounts;
+namespace Bila.Models.Webhooks;
 
-[JsonConverter(typeof(JsonModelConverter<BilaResponse, BilaResponseFromRaw>))]
-public sealed record class BilaResponse : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<WebhookDeactivateResponse, WebhookDeactivateResponseFromRaw>)
+)]
+public sealed record class WebhookDeactivateResponse : JsonModel
 {
     /// <summary>
     /// Response message
@@ -43,37 +45,40 @@ public sealed record class BilaResponse : JsonModel
         _ = this.Status;
     }
 
-    public BilaResponse() { }
+    public WebhookDeactivateResponse() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public BilaResponse(BilaResponse bilaResponse)
-        : base(bilaResponse) { }
+    public WebhookDeactivateResponse(WebhookDeactivateResponse webhookDeactivateResponse)
+        : base(webhookDeactivateResponse) { }
 #pragma warning restore CS8618
 
-    public BilaResponse(IReadOnlyDictionary<string, JsonElement> rawData)
+    public WebhookDeactivateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BilaResponse(FrozenDictionary<string, JsonElement> rawData)
+    WebhookDeactivateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="BilaResponseFromRaw.FromRawUnchecked"/>
-    public static BilaResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="WebhookDeactivateResponseFromRaw.FromRawUnchecked"/>
+    public static WebhookDeactivateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class BilaResponseFromRaw : IFromRawJson<BilaResponse>
+class WebhookDeactivateResponseFromRaw : IFromRawJson<WebhookDeactivateResponse>
 {
     /// <inheritdoc/>
-    public BilaResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        BilaResponse.FromRawUnchecked(rawData);
+    public WebhookDeactivateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => WebhookDeactivateResponse.FromRawUnchecked(rawData);
 }
