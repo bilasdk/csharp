@@ -43,12 +43,12 @@ public class WebhookServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Deactivate_Works()
     {
-        var bilaResponse = await this.client.Webhooks.Deactivate(
+        var response = await this.client.Webhooks.Deactivate(
             "68f11209-451f-4a15-bfcd-d916eb8b09f4",
             new(),
             TestContext.Current.CancellationToken
         );
-        bilaResponse.Validate();
+        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

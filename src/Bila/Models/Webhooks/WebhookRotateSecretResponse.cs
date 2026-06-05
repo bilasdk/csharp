@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Bila.Core;
-using Bila.Models.Accounts;
 
 namespace Bila.Models.Webhooks;
 
@@ -39,14 +38,12 @@ public sealed record class WebhookRotateSecretResponse : JsonModel
         init { this._rawData.Set("status", value); }
     }
 
-    public WebhookRotateSecretResponseIntersectionMember1Data? Data
+    public WebhookRotateSecretResponseData? Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<WebhookRotateSecretResponseIntersectionMember1Data>(
-                "data"
-            );
+            return this._rawData.GetNullableClass<WebhookRotateSecretResponseData>("data");
         }
         init
         {
@@ -58,15 +55,6 @@ public sealed record class WebhookRotateSecretResponse : JsonModel
             this._rawData.Set("data", value);
         }
     }
-
-    public static implicit operator BilaResponse(
-        WebhookRotateSecretResponse webhookRotateSecretResponse
-    ) =>
-        new()
-        {
-            Message = webhookRotateSecretResponse.Message,
-            Status = webhookRotateSecretResponse.Status,
-        };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -116,88 +104,11 @@ class WebhookRotateSecretResponseFromRaw : IFromRawJson<WebhookRotateSecretRespo
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        WebhookRotateSecretResponseIntersectionMember1,
-        WebhookRotateSecretResponseIntersectionMember1FromRaw
+        WebhookRotateSecretResponseData,
+        WebhookRotateSecretResponseDataFromRaw
     >)
 )]
-public sealed record class WebhookRotateSecretResponseIntersectionMember1 : JsonModel
-{
-    public WebhookRotateSecretResponseIntersectionMember1Data? Data
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<WebhookRotateSecretResponseIntersectionMember1Data>(
-                "data"
-            );
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("data", value);
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void Validate()
-    {
-        this.Data?.Validate();
-    }
-
-    public WebhookRotateSecretResponseIntersectionMember1() { }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    public WebhookRotateSecretResponseIntersectionMember1(
-        WebhookRotateSecretResponseIntersectionMember1 webhookRotateSecretResponseIntersectionMember1
-    )
-        : base(webhookRotateSecretResponseIntersectionMember1) { }
-#pragma warning restore CS8618
-
-    public WebhookRotateSecretResponseIntersectionMember1(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        this._rawData = new(rawData);
-    }
-
-#pragma warning disable CS8618
-    [SetsRequiredMembers]
-    WebhookRotateSecretResponseIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-    }
-#pragma warning restore CS8618
-
-    /// <inheritdoc cref="WebhookRotateSecretResponseIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static WebhookRotateSecretResponseIntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
-    {
-        return new(FrozenDictionary.ToFrozenDictionary(rawData));
-    }
-}
-
-class WebhookRotateSecretResponseIntersectionMember1FromRaw
-    : IFromRawJson<WebhookRotateSecretResponseIntersectionMember1>
-{
-    /// <inheritdoc/>
-    public WebhookRotateSecretResponseIntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => WebhookRotateSecretResponseIntersectionMember1.FromRawUnchecked(rawData);
-}
-
-[JsonConverter(
-    typeof(JsonModelConverter<
-        WebhookRotateSecretResponseIntersectionMember1Data,
-        WebhookRotateSecretResponseIntersectionMember1DataFromRaw
-    >)
-)]
-public sealed record class WebhookRotateSecretResponseIntersectionMember1Data : JsonModel
+public sealed record class WebhookRotateSecretResponseData : JsonModel
 {
     /// <summary>
     /// New signing secret (64-character hex, shown once)
@@ -218,35 +129,31 @@ public sealed record class WebhookRotateSecretResponseIntersectionMember1Data : 
         _ = this.Secret;
     }
 
-    public WebhookRotateSecretResponseIntersectionMember1Data() { }
+    public WebhookRotateSecretResponseData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public WebhookRotateSecretResponseIntersectionMember1Data(
-        WebhookRotateSecretResponseIntersectionMember1Data webhookRotateSecretResponseIntersectionMember1Data
+    public WebhookRotateSecretResponseData(
+        WebhookRotateSecretResponseData webhookRotateSecretResponseData
     )
-        : base(webhookRotateSecretResponseIntersectionMember1Data) { }
+        : base(webhookRotateSecretResponseData) { }
 #pragma warning restore CS8618
 
-    public WebhookRotateSecretResponseIntersectionMember1Data(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public WebhookRotateSecretResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    WebhookRotateSecretResponseIntersectionMember1Data(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    WebhookRotateSecretResponseData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="WebhookRotateSecretResponseIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static WebhookRotateSecretResponseIntersectionMember1Data FromRawUnchecked(
+    /// <inheritdoc cref="WebhookRotateSecretResponseDataFromRaw.FromRawUnchecked"/>
+    public static WebhookRotateSecretResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -254,18 +161,17 @@ public sealed record class WebhookRotateSecretResponseIntersectionMember1Data : 
     }
 
     [SetsRequiredMembers]
-    public WebhookRotateSecretResponseIntersectionMember1Data(string secret)
+    public WebhookRotateSecretResponseData(string secret)
         : this()
     {
         this.Secret = secret;
     }
 }
 
-class WebhookRotateSecretResponseIntersectionMember1DataFromRaw
-    : IFromRawJson<WebhookRotateSecretResponseIntersectionMember1Data>
+class WebhookRotateSecretResponseDataFromRaw : IFromRawJson<WebhookRotateSecretResponseData>
 {
     /// <inheritdoc/>
-    public WebhookRotateSecretResponseIntersectionMember1Data FromRawUnchecked(
+    public WebhookRotateSecretResponseData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => WebhookRotateSecretResponseIntersectionMember1Data.FromRawUnchecked(rawData);
+    ) => WebhookRotateSecretResponseData.FromRawUnchecked(rawData);
 }

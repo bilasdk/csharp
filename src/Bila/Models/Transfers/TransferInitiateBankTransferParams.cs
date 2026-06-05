@@ -333,7 +333,6 @@ public record class TransferInitiateBankTransferParams : ParamsBase
 public enum Country
 {
     Zm,
-    Ng,
 }
 
 sealed class CountryConverter : JsonConverter<Country>
@@ -347,7 +346,6 @@ sealed class CountryConverter : JsonConverter<Country>
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "zm" => Country.Zm,
-            "ng" => Country.Ng,
             _ => (Country)(-1),
         };
     }
@@ -359,7 +357,6 @@ sealed class CountryConverter : JsonConverter<Country>
             value switch
             {
                 Country.Zm => "zm",
-                Country.Ng => "ng",
                 _ => throw new BilaInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

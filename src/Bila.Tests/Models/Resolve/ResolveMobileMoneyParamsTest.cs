@@ -68,7 +68,6 @@ public class ResolveMobileMoneyParamsCountryTest : TestBase
 {
     [Theory]
     [InlineData(ResolveMobileMoneyParamsCountry.Zm)]
-    [InlineData(ResolveMobileMoneyParamsCountry.Ng)]
     public void Validation_Works(ResolveMobileMoneyParamsCountry rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -90,7 +89,6 @@ public class ResolveMobileMoneyParamsCountryTest : TestBase
 
     [Theory]
     [InlineData(ResolveMobileMoneyParamsCountry.Zm)]
-    [InlineData(ResolveMobileMoneyParamsCountry.Ng)]
     public void SerializationRoundtrip_Works(ResolveMobileMoneyParamsCountry rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -126,7 +124,6 @@ public class OperatorTest : TestBase
     [InlineData(Operator.Airtel)]
     [InlineData(Operator.Mtn)]
     [InlineData(Operator.Zamtel)]
-    [InlineData(Operator.Vodacom)]
     public void Validation_Works(Operator rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -150,7 +147,6 @@ public class OperatorTest : TestBase
     [InlineData(Operator.Airtel)]
     [InlineData(Operator.Mtn)]
     [InlineData(Operator.Zamtel)]
-    [InlineData(Operator.Vodacom)]
     public void SerializationRoundtrip_Works(Operator rawValue)
     {
         // force implicit conversion because Theory can't do that for us
