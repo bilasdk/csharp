@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-06-06)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/bilasdk/csharp/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **examples:** add example projects and enhance README ([43474db](https://github.com/bilasdk/csharp/commit/43474dbf3ebb740f8ae62d4ae49a782f0e961884))
+
 ## 0.1.0 (2026-06-05)
 
 Full Changelog: [v0.0.2...v0.1.0](https://github.com/bilasdk/csharp/compare/v0.0.2...v0.1.0)
