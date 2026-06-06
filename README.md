@@ -17,21 +17,47 @@ This library requires .NET Standard 2.0 or later.
 
 ## Usage
 
-See the [`examples`](examples) directory for complete and runnable examples.
-
 ```csharp
 using System;
 using Bila;
+using Bila.Core;
 using Bila.Models.Accounts;
 
-BilaClient client = new();
+BilaClient client = new()
+{
+    ApiKey = "Your API key",
+    BaseUrl = EnvironmentUrl.Sandbox, // either EnvironmentUrl.Production or EnvironmentUrl.Sandbox
+};
 
 AccountListParams parameters = new();
 
-var accounts = await client.Accounts.List(parameters);
+AccountListResponse accounts = await client.Accounts.List(parameters);
 
 Console.WriteLine(accounts);
 ```
+
+## Examples
+
+Runnable examples live in the [examples](./examples/) directory. Each file demonstrates a specific area of the API:
+
+| Example | Description |
+| ----------------------------------------------------------- | ---------------------------------------------------- |
+| [accounts.cs](./examples/accounts.cs) | Retrieve accounts, list accounts, and check balances |
+| [banks.cs](./examples/banks.cs) | List supported banks and financial institutions |
+| [collections.cs](./examples/collections.cs) | Collect payments via mobile money |
+| [resolve.cs](./examples/resolve.cs) | Verify bank account and mobile money details |
+| [transactions.cs](./examples/transactions.cs) | Retrieve and list transaction history |
+| [transfer-recipients.cs](./examples/transfer-recipients.cs) | Manage payout recipients |
+| [transfers.cs](./examples/transfers.cs) | Send payouts via bank transfer and mobile money |
+| [webhooks.cs](./examples/webhooks.cs) | Configure webhooks and manage delivery history |
+
+To run an example from this repository:
+
+```bash
+dotnet run --project examples -- accounts
+```
+
+Replace `accounts` with any example from the table above. Set your API key via the `BILA_API_KEY` environment variable or in the example file before running.
 
 ## Client configuration
 
