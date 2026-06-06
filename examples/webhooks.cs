@@ -18,7 +18,8 @@ static class WebhooksExample
     {
         BilaClient client = new()
         {
-            ApiKey = Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
+            ApiKey =
+                Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
             BaseUrl = EnvironmentUrl.Sandbox,
         };
 
@@ -27,12 +28,7 @@ static class WebhooksExample
          *********************************************/
         WebhookCreateParams createParams = new()
         {
-            Events =
-            [
-                Event.PaymentCompleted,
-                Event.WithdrawalCompleted,
-                Event.TransferCompleted,
-            ],
+            Events = [Event.PaymentCompleted, Event.WithdrawalCompleted, Event.TransferCompleted],
             UrlValue = "https://example.com/webhooks",
         };
 
@@ -76,8 +72,10 @@ static class WebhooksExample
             Status = "DELIVERED",
         };
 
-        WebhookGetDeliveriesResponse deliveries =
-            await client.Webhooks.GetDeliveries(WebhookId, deliveriesParams);
+        WebhookGetDeliveriesResponse deliveries = await client.Webhooks.GetDeliveries(
+            WebhookId,
+            deliveriesParams
+        );
         Console.WriteLine("getDeliveries: {0}", deliveries);
 
         /********************************************

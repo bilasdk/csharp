@@ -16,7 +16,8 @@ static class ResolveExample
     {
         BilaClient client = new()
         {
-            ApiKey = Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
+            ApiKey =
+                Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
             BaseUrl = EnvironmentUrl.Sandbox,
         };
 
@@ -30,8 +31,9 @@ static class ResolveExample
             Country = Country.Zm,
         };
 
-        ResolveBankAccountResponse bankAccount =
-            await client.Resolve.BankAccount(resolveBankParams);
+        ResolveBankAccountResponse bankAccount = await client.Resolve.BankAccount(
+            resolveBankParams
+        );
         Console.WriteLine("bankAccount: {0}", bankAccount);
 
         /********************************************
@@ -44,8 +46,9 @@ static class ResolveExample
             Phone = "0977433571",
         };
 
-        ResolveMobileMoneyResponse mobileMoney =
-            await client.Resolve.MobileMoney(resolveMobileParams);
+        ResolveMobileMoneyResponse mobileMoney = await client.Resolve.MobileMoney(
+            resolveMobileParams
+        );
         Console.WriteLine("mobileMoney: {0}", mobileMoney);
     }
 }

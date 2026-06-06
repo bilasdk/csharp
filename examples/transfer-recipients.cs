@@ -18,15 +18,17 @@ static class TransferRecipientsExample
     {
         BilaClient client = new()
         {
-            ApiKey = Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
+            ApiKey =
+                Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
             BaseUrl = EnvironmentUrl.Sandbox,
         };
 
         /********************************************
          * Retrieve transfer recipient
          *********************************************/
-        TransferRecipientRetrieveResponse recipient =
-            await client.TransferRecipients.Retrieve(RecipientId);
+        TransferRecipientRetrieveResponse recipient = await client.TransferRecipients.Retrieve(
+            RecipientId
+        );
         Console.WriteLine("retrieve: {0}", recipient);
 
         /********************************************
@@ -39,8 +41,7 @@ static class TransferRecipientsExample
             Type = Bila.Models.TransferRecipients.Type.BankAccount,
         };
 
-        TransferRecipientListResponse recipients =
-            await client.TransferRecipients.List(listParams);
+        TransferRecipientListResponse recipients = await client.TransferRecipients.List(listParams);
         Console.WriteLine("list: {0}", recipients);
 
         /********************************************

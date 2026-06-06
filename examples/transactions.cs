@@ -19,15 +19,15 @@ static class TransactionsExample
     {
         BilaClient client = new()
         {
-            ApiKey = Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
+            ApiKey =
+                Environment.GetEnvironmentVariable("BILA_API_KEY") ?? "sk_test_your_api_key_here",
             BaseUrl = EnvironmentUrl.Sandbox,
         };
 
         /********************************************
          * Retrieve transaction
          *********************************************/
-        TransactionRetrieveResponse transaction =
-            await client.Transactions.Retrieve(TransactionId);
+        TransactionRetrieveResponse transaction = await client.Transactions.Retrieve(TransactionId);
         Console.WriteLine("retrieve: {0}", transaction);
 
         /********************************************
