@@ -3,11 +3,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <RootNamespace>Bila.Examples</RootNamespace>
+    <RootNamespace>Usebila.Examples</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Bila\Bila.csproj" />
+    <ProjectReference Include="..\src\Usebila\Usebila.csproj" />
   </ItemGroup>
 </Project>

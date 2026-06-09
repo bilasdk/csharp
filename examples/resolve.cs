@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Resolve;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Resolve;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Resolve examples

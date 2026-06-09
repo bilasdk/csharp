@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 (2026-06-09)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/bilasdk/csharp/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** manual updates ([9b5d752](https://github.com/bilasdk/csharp/commit/9b5d7524c76b5c3c0e5a9b16bc3637021ac077a2))
+* **api:** manual updates ([4f7d2c7](https://github.com/bilasdk/csharp/commit/4f7d2c75ec0b1f0bc702d47237959fe8436e6037))
+
 ## 0.2.0 (2026-06-06)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/bilasdk/csharp/compare/v0.1.0...v0.2.0)

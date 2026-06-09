@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.TransferRecipients;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.TransferRecipients;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Transfer recipients examples
@@ -38,7 +38,7 @@ static class TransferRecipientsExample
         {
             Page = 1,
             PerPage = 50,
-            Type = Bila.Models.TransferRecipients.Type.BankAccount,
+            Type = Usebila.Models.TransferRecipients.Type.BankAccount,
         };
 
         TransferRecipientListResponse recipients = await client.TransferRecipients.List(listParams);

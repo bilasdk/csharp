@@ -6,9 +6,10 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
+Install the package from [NuGet](https://www.nuget.org/packages/Usebila):
+
 ```bash
-git clone git@github.com:bilasdk/csharp.git
-dotnet add reference csharp/src/Bila
+dotnet add package Usebila
 ```
 
 ## Requirements
@@ -19,9 +20,8 @@ This library requires .NET Standard 2.0 or later.
 
 ```csharp
 using System;
-using Bila;
-using Bila.Core;
-using Bila.Models.Accounts;
+using Usebila;
+using Usebila.Models.Accounts;
 
 BilaClient client = new()
 {
@@ -64,7 +64,7 @@ Replace `accounts` with any example from the table above. Set your API key via t
 Configure the client using environment variables:
 
 ```csharp
-using Bila;
+using Usebila;
 
 // Configured using the BILA_API_KEY and BILA_BASE_URL environment variables
 BilaClient client = new();
@@ -73,7 +73,7 @@ BilaClient client = new();
 Or manually:
 
 ```csharp
-using Bila;
+using Usebila;
 
 BilaClient client = new() { ApiKey = "My API Key" };
 ```
@@ -135,7 +135,7 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using Bila.Models.Accounts;
+using Usebila.Models.Accounts;
 
 var response = await client.WithRawResponse.Accounts.List();
 AccountListResponse deserialized = await response.Deserialize();
@@ -186,7 +186,7 @@ The API may also explicitly instruct the SDK to retry or not retry a request.
 To set a custom number of retries, configure the client using the `MaxRetries` method:
 
 ```csharp
-using Bila;
+using Usebila;
 
 BilaClient client = new() { MaxRetries = 3 };
 ```
@@ -213,7 +213,7 @@ To set a custom timeout, configure the client using the `Timeout` option:
 
 ```csharp
 using System;
-using Bila;
+using Usebila;
 
 BilaClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
@@ -239,7 +239,7 @@ To route requests through a proxy, configure your client with a custom [`HttpCli
 ```csharp
 using System.Net;
 using System.Net.Http;
-using Bila;
+using Usebila;
 
 var httpClient = new HttpClient
 (
@@ -257,8 +257,8 @@ BilaClient client = new() { HttpClient = httpClient };
 The SDK sends requests to the production environment by default. To send requests to a different environment, configure the client like so:
 
 ```csharp
-using Bila;
-using Bila.Core;
+using Usebila;
+using Usebila.Core;
 
 BilaClient client = new() { BaseUrl = EnvironmentUrl.Sandbox };
 ```
@@ -274,7 +274,7 @@ To set undocumented parameters, a constructor exists that accepts dictionaries f
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using Bila.Models.Accounts;
+using Usebila.Models.Accounts;
 
 AccountListParams parameters = new
 (
@@ -302,7 +302,7 @@ This can also be used to set a documented parameter to an undocumented or not ye
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using Bila.Models.TransferRecipients;
+using Usebila.Models.TransferRecipients;
 
 var parameters = TransferRecipientCreateBankAccountParams.FromRawUnchecked
 (
@@ -351,7 +351,7 @@ accounts.Validate();
 Or configure the client using the `ResponseValidation` option:
 
 ```csharp
-using Bila;
+using Usebila;
 
 BilaClient client = new() { ResponseValidation = true };
 ```
