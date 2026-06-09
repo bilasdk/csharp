@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Accounts;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Accounts;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Accounts examples

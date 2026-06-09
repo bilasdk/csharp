@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Transactions;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Transactions;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Transactions examples

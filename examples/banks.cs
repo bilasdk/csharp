@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Banks;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Banks;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Banks examples

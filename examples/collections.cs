@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Collections;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Collections;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Collections examples

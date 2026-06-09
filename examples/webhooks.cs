@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Webhooks;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Webhooks;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Webhooks examples

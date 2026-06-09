@@ -1,8 +1,8 @@
-using Bila;
-using Bila.Core;
-using Bila.Models.Transfers;
+using Usebila;
+using Usebila.Core;
+using Usebila.Models.Transfers;
 
-namespace Bila.Examples;
+namespace Usebila.Examples;
 
 /// <summary>
 /// Transfers examples
@@ -45,7 +45,7 @@ static class TransfersExample
             Page = 1,
             PerPage = 50,
             Status = Status.Pending,
-            Type = Bila.Models.Transfers.Type.BankAccount,
+            Type = Usebila.Models.Transfers.Type.BankAccount,
         };
 
         TransferListResponse transfers = await client.Transfers.List(listParams);
