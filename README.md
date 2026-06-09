@@ -6,9 +6,10 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
+Install the package from [NuGet](https://www.nuget.org/packages/Usebila):
+
 ```bash
-git clone git@github.com:bilasdk/csharp.git
-dotnet add reference csharp/src/Usebila
+dotnet add package Usebila
 ```
 
 ## Requirements
