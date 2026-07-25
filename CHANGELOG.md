@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.0 (2026-07-25)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/bilasdk/csharp/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([3b5775d](https://github.com/bilasdk/csharp/commit/3b5775da72bd37abc820c488de0d934e3c8fb392))
+
+
+### Bug Fixes
+
+* **client:** tolerate JSON null in required untyped fields and prefer more specific union variants ([b75a21e](https://github.com/bilasdk/csharp/commit/b75a21e4c7b1882f07329c8274d0b6f14973e02b))
+
 ## 0.3.0 (2026-06-09)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/bilasdk/csharp/compare/v0.2.0...v0.3.0)
